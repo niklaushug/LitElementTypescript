@@ -1,7 +1,17 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: './src/index.ts',
+  entry: {
+    app: './src/index.ts'
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      inject: false,
+      template: 'src/index.html',
+      title: 'LitElement Typscript Base'
+    }),
+  ],
   devtool: 'inline-source-map',
   module: {
     rules: [
@@ -16,7 +26,7 @@ module.exports = {
     extensions: ['.ts'],
   },
   output: {
-    filename: 'bundle.js',
+    filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
   },
 };
